@@ -1,0 +1,47 @@
+﻿@model MyShelf.Models.Book
+@{
+    ViewBag.Title = "AddToCart";
+}
+
+
+<head>
+    <script src="~/Scripts/sweetalert2.all.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $('#cart').on("click", function (e) {
+            var userAuthorized = @User.Identity.IsAuthenticated.ToString().ToLower();
+            if (!userAuthorized) {
+                e.preventDefault();
+                Swal.fire('Please log in or sign up')
+            }
+            else {
+                $.ajax({
+                    url: "/Books/UpdateCart?book_id="+$('#id').val()+"&quantity="+$('#num').val(),
+                    method: "POST",
+                    success: function () {
+                        Swal.fire({
+                            @*position: 'top-end',*@
+                            icon: 'success',
+                            title: 'Item added to cart',
+                            showConfirmButton: false,
+                            timer: 1400
+                        })
+                    }
+                })
+            }
+        })
+        })
+    </script>
+    <style>
+        #cart {
+            margin-top: -15px;
+        }
+    </style>
+</head>
+
+<form id="form">
+    <input type="hidden" id="id" name="book_id" value="@Model.BookId" />
+    <input type="number" id="num" name="quantity" maxlength="12" value="1" min="1" max="1000" />
+    <button type="button" id="cart" class="btn-primary btn-lg">Add to Cart</button>
+</form>

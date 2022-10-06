@@ -1,0 +1,177 @@
+﻿@model MyShelf.Models.ShoppingCart
+@{
+    ViewBag.Title = "User Cart";
+}
+
+<head>
+    <link href="~/Content/App/shopping-cart.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-3.4.1.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+           @{
+               decimal total = 0;
+               foreach (var item in Model.BookItems)
+               {
+                   total += item.Quantity * item.Book.Price;
+               }
+           }
+            $('#total').text("Total: $" + @total);
+            $("#table").DataTable({
+                scrollY: '50vh',
+                scrollCollapse: true,
+                paging: false,
+            });
+        });
+    </script>
+    <style>
+        .navbar {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 4.5rem;
+            padding-bottom: 1.5rem;
+            margin-top: -99px;
+            /* margin-bottom: -5px;*/
+        }
+        #cart, #buy {
+            font-size: 18px;
+            margin-top: -50px;
+            background-color: #ebeeef;
+            border: 2px solid #41454b;
+        }
+        #under-basket {
+            justify-content: center; 
+            border-bottom: 1px solid #41454b;;
+        }
+        .checkout-images, #basket {
+            width: 35px; 
+            height: 35px;
+        }
+        #total {
+            font-size: 25px;
+        }
+        #buy {
+            border: 0px; 
+            margin-top: 40px;
+            margin-bottom: 45px;
+        }
+        .larger-checkout-images {
+            width: 55px; 
+            height: 55px;
+        }
+            .larger-checkout-images:hover, .red:hover, .checkout-images:hover {
+                transform: scale(1.1);
+            }
+        .jumbotron {
+            margin-top: -20px;
+        }
+        #cart {
+            margin-top: 50px;
+        }
+        #table_filter {
+            margin-left: 45px;
+            font-size: 15px;
+        }
+        #table_wrapper {
+            display: inline-block;
+        }
+        #under-basket > span {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+        #sum {
+            margin-top: 15px;
+            border-top: 1px solid #41454b;
+            padding-top: 15px;
+        }
+    </style>
+</head>
+
+<div id="content">
+    <div id="check">
+        @*<div class="jumbotron">
+            <div>Checkout</div>
+        </div>*@
+    </div>
+    <div id="cont">
+
+        <div id="cart" style="width: 700px;">
+
+            <div class="shop" id="under-basket">
+            <span>
+                Your Basket
+                <img src="~/Images/shopping-cart.png" id="basket" alt="Checkout" />
+            </span>
+
+            </div>
+            
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>Book Title</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Full Price</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.BookItems)
+                    {
+                        <tr>
+                            @{
+                                decimal price = 0;
+                            }
+
+                            <th>@item.Book.Title</th>
+                            <th>$@item.Book.Price</th>
+                            <th>@item.Quantity</th>
+
+                            @{
+                                price = item.Quantity * item.Book.Price;
+                            }
+                            
+                            @{
+                                price = Math.Round(price, 2);
+                                ViewBag.Count = Model.BookItems.Count();
+                                
+                            }
+                            
+                            <th>$@price</th>
+                            <th>
+                                <a class="delete" href="/Books/RemoveFromCart/@item.ItemId">
+                                    <img src="~/Images/remove-red.jpg" class="checkout-images red" alt="Delete"/>
+                                </a>
+                            </th>
+
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+
+
+
+            <div id="sum" style="flex-direction: row;">
+                <a href="/Books/Index" class="btn btn-success" style="color: white; font-size: 15px;">Continue Shopping</a>
+                <div id="total"></div>
+            </div>
+        </div>
+
+
+        <div id="buy">
+            <div class="shop">
+                    <span>Payment Options</span>
+                </div>
+            <div id="icons">
+                    <img src="~/Images/paypal.png" alt="PayPal" class="checkout-images"/>
+                    <img src="~/Images/visa.png" alt="Visa" class="larger-checkout-images"/>
+                    <img src="~/Images/mastercard.png" alt="Master Card" class="larger-checkout-images"/>
+                </div>
+        </div>
+    </div>
+</div>
+

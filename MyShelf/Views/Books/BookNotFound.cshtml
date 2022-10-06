@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MyShelf.Models.Book>
+
+@{
+    ViewBag.Title = "BookNotFound";
+}
+
+@*<h2>BookNotFound</h2>*@
+
+<head>
+    <link href="@Url.Content("~/Content/App/Search.css")" rel="stylesheet" type="text/css" />
+    <style>
+        .navbar {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+            margin-top: -50px;
+            /* margin-bottom: -5px; */
+        }
+        #content {
+            width: 50%;
+            height: 570px;
+            margin: auto;
+        }
+
+        .book-link {
+            border: 3px solid #d1d0d0;
+            border-radius: 20px;
+            display: inline-block;
+            width: 65px;
+            margin-top: 35px;
+            margin-left: -170px;
+            padding-left: 5px;
+            height: 35px;
+            background-color: #d1d0d0;
+            
+        }
+
+        .book-image {
+            width: 45px;
+            height: 45px;
+            margin-left: 2px;
+            margin-top: -13px;
+        }
+            .book-image:hover {
+                transform: scale(1.1);
+            }
+        .wrap {
+            margin-top: 100px;
+        }
+        #not-found {
+            width: 200px;
+            margin-left: 80px;
+        }
+        #inside-content {
+            margin-left: 195px;
+        }
+        h2 {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<div id="content">
+    <div id="inside-content">
+        <a href="/Books/Index/" class="book-link">
+            <img src="~/Images/arrow-left.jpg" alt="Back" class="book-image" />
+        </a>
+
+        <div class="wrap">
+            <h2>Sorry! We don't have that title.</h2>
+            <img src="~/Images/notfound.png" id="not-found" />
+        </div>
+    </div>
+    
+</div>

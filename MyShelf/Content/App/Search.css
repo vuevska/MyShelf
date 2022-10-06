@@ -1,0 +1,85 @@
+﻿@font-face {
+    /*font-family: 'camptonlight_demo';
+    src: url('https://localhost:44335/fonts/campton-lightdemo-webfont.woff2') format('woff2'), url('~/fonts/campton-lightdemo-webfont.woff') format('woff');*/
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    /*font-family: 'courgetteregular';
+    src: url('https://localhost:44335/fonts/courgette-regular-webfont.woff2') format('woff2'), url('~/fonts/courgette-regular-webfont.woff') format('woff');*/
+    font-weight: normal;
+    font-style: normal;
+}
+
+header {
+    font-family: 'courgetteregular';
+    color: lightblue;
+    font-weight: 100;
+    line-height: normal;
+    font-size: x-large;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+table {
+    font-family: 'camptonlight_demo';
+}
+
+thead {
+    color: white;
+    background-color: lightblue;
+}
+
+tr {
+    border-bottom: 6px solid lightblue;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+    a:hover {
+        color: cornflowerblue;
+        text-decoration: none;
+    }
+
+.body-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrap {
+    width: 100%;
+}
+
+#table_filter {
+    display: none;
+}
+
+#table_wrapper {
+    /*font-family: 'camptonlight_demo';*/
+}
+
+#table_info {
+    font-family: monospace;
+}
+
+ul.pagination li a {
+    background-color: lightblue;
+    color: white;
+}
+
+    ul.pagination li a:hover {
+        background-color: white;
+        color: #62080a;
+    }
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+    color: #62080a;
+    background-color: white;
+    border: 2px solid #62080a;
+}

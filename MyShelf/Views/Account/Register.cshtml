@@ -1,0 +1,112 @@
+﻿@model MyShelf.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+
+<head>
+    <link href="@Url.Content("~/Content/App/Register.css")" rel="stylesheet" type="text/css" />
+    <style>
+        #content {
+            height: 550px;
+            @*margin-bottom: -30px;*@
+        }
+        #form-begin {
+            margin: auto; 
+            margin-top: 60px; 
+            width: 30%; 
+            border: 1px solid lightslategray; 
+            border-radius: 22px;
+        }
+        #inside-content {
+            margin-left: 20px; 
+            margin-top: 15px;
+        }
+        #image-div {
+            display: inline-block; 
+            margin-bottom: -15px; 
+            margin-left: 3px;
+        }
+        #image-img {
+            width: 50px; 
+            height: 50px; 
+            display: inline-block; 
+            margin-bottom: -60px;
+        }
+        h2, h4 {
+            margin-left: 108px;
+            font-size: 20px;
+        }
+        hr {
+            margin-left: -20px;
+        }
+
+        #input-register {
+            font-size: 18px;
+            margin-left: 90px;
+            border: 1px solid gray;
+            background-color: gray;
+            color: black;
+            margin-bottom: 10px;
+        }
+        #input-register:hover {
+            background-color: lightgray;
+            border: 1px solid lightgray;
+        }
+        .form-group {
+            margin-left: 55px;
+        }
+        .navbar {
+            margin-top: -90px;
+            padding-top: 4.5rem;
+            padding-bottom: 1.5rem;
+        }
+        #title {
+            margin-top: -10px;
+        }
+    </style>
+</head>
+
+<div id="content">
+    <form action="/Account/Register" id="form-begin" class="form-horizontal" method="post" role="form" novalidate="novalidate">
+        <div id="inside-content">
+            @Html.AntiForgeryToken()
+            <div id="image-div">
+                <img src="~/Images/book_0.png" id="image-img">
+            </div>
+            <h2 id="title">@ViewBag.Title</h2>
+            <h4>Create a new account:</h4>
+            <hr/>
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group">
+                @*@Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" }) *@
+                <label class="col-md-2 control-label" for="ConfirmPassword" style="margin-top: -12px;">Confirm Password</label>
+                <div class="col-md-10">
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group" style="margin-left: 55px;">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-default" value="Register" id="input-register" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

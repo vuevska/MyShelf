@@ -1,0 +1,21 @@
+﻿/**/
+.product-item {
+    position: relative;
+    border: 0px;
+}
+
+.product-item .product-item-badge {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    padding: 5px 12px 6px;
+    color: #fff;
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: 600;
+    background: #333;
+    -webkit-border-radius: 4px 0 4px 0;
+    -moz-border-radius: 4px 0 4px 0;
+    border-radius: 4px 0 4px 0;
+    border: 0px;
+}

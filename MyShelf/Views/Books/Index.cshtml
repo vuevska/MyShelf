@@ -1,0 +1,362 @@
+﻿@model IEnumerable<MyShelf.Models.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    @*<link href="css/styles.css" rel="stylesheet" />*@
+    <link href="~/Content/App/styles.css" rel="stylesheet"/>
+
+    <style>
+        html {
+            height: 100%;
+        }
+
+        .search {
+            margin-left: -2px;
+            margin-top: 13px;
+        }
+
+        #logo {
+            font-size: 38px;
+            font-family: monospace;
+            font-weight: bold;
+            margin-top: -20px;
+            color: #c4bdbd;
+        }
+
+        #searchpot {
+            display: inline-block;
+        }
+
+        #bar {
+            float: left;
+            width: 80%;
+            font-size: 13px;
+        }
+
+        #search {
+            border: 0px solid white;
+            float: right;
+            width: 19%;
+            background-color: white;
+        }
+
+        .img-rounded:hover {
+            transform: scale(1.1);
+        }
+
+        #registerLink, #loginLink {
+            text-decoration: none;
+            color: white;
+            font-size: 17px;
+            margin-right: 15px;
+            font-family: monospace;
+        }
+        .container-fluid {
+            margin-top: 15px;
+            margin-left: 5px;
+        }
+
+        #image-menu {
+            width: 30px;
+            height: 30px;
+            background-color: white;
+        }
+
+        #sidebarToggle:active, #sidebarToggle:hover, .btn, .btn-primary {
+            background-color: white;
+        }
+        #sidebar-wrapper .sidebar-heading {
+            padding: 0.6rem 1.1rem;
+            font-size: 1.4rem;
+            margin-left: -10px;
+        }
+        #sidebar-wrapper .list-group {
+            width: 12rem;
+        }
+        .navbar {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1.46rem;
+            @*padding-bottom: 1.5rem;*@
+            margin-top: -50px;
+            margin-bottom: -10px;
+        }
+        .row {
+            display: flex;
+            flex-wrap: nowrap;
+            z-index: 0;
+            width: 90%;
+            margin: auto;
+        }
+
+        .col {
+            z-index: 9999;
+            margin-right: -25px;
+            padding-bottom: 6px;
+        }
+
+        .book-link {
+            padding-bottom: 25px;
+            margin: 5px;
+        }
+
+        .book-image {
+            height: 240px;
+            width: 150px;
+            border-radius: 5px;
+        }
+
+        .shelf {
+            margin-top: -297px;
+            width: 100%;
+            margin-left: -7px;
+        }
+        #shopping-cart {
+            color: white; 
+            border-radius: 5px; 
+            text-decoration: none;
+            background-color: #e6e1e1;
+            padding: 10px;
+            margin-left: 30px;
+        }
+        .genre {
+            font-size: 15px;
+        }
+        #sidebarToggle {
+            margin-left: -20px;
+        }
+        h2 {
+            font-size: 23px;
+        }
+        #classics {
+            margin-top: 40px;
+        }
+        #image-search {
+            width: 27px; 
+            height: 27px; 
+            margin-top: -10px;
+        }
+        #navbarDropdown {
+            font-size: 18px;
+            font-family: monospace;
+        }
+        #cart-image {
+            width: 40px; 
+            height: 40px;
+        }
+            #cart-image:hover {
+                transform: scale(1.1);
+            }
+        #number-items {
+            color: black;
+            font-size: 20px;
+            margin-left: -5px;
+        }
+    </style>
+</head>
+
+<div class="d-flex" id="wrapper">
+    <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="list-group list-group-flush">
+
+            <div class="sidebar-heading border-bottom" style="margin-top: 8.5px;">
+                <div class="sidebar-heading">Genres</div>
+            </div>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3 genre" href="#classics">Classics</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3 genre" href="#fiction">Fiction</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3 genre" href="#romance">Romance</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3 genre" href="#fantasy">Fantasy</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3 genre" href="#selfhelp">Self-help</a>
+        </div>
+    </div>
+    <div id="page-content-wrapper">
+        <nav class="navbar navbar-expand-lg navbar-light border-bottom" style="margin-top: -91.5px;">
+            <div class="container-fluid" style="margin-top: 40px; margin-bottom: -10px;">
+                <button class="btn" id="sidebarToggle">
+                    <img src="~/Images/menu.jpg" id="image-menu" />
+                </button>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                        @*<li class="nav-item active"><a class="nav-link" href="#!">Home</a></li>
+                          <li class="nav-item"><a class="nav-link" href="#!">Link</a></li>*@
+                        @*<li class="nav-item active">
+                                @Html.Partial("_LoginPartial")
+                         </li>*@
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            <li class="nav-item dropdown" style="height: 39.4px; margin-right: 42px; z-index: 10000;">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admin</a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @*<a class="dropdown-item" href="/Books/Create">New Book</a>*@
+                                    @*<div class="dropdown-divider"></div>*@
+                                    <a class="dropdown-item" href="/Account/AddUserToRole">Modify Roles</a>
+                                    @*<div class="dropdown-divider"></div>*@
+                                    <a class="dropdown-item" href="/Authors/Index">Authors</a>
+                                    @*<div class="dropdown-divider"></div>*@
+                                    <a class="dropdown-item" href="/Genres/Index">Genres</a>
+                                </div>
+                            </li>
+                        }
+                        @if (User.IsInRole("StdUser"))
+                        {
+                            <li class="nav-item active" style="height: 39.4px; margin-right: 42px; margin-top: 8px;">
+                                <a id="shopping-cart" href="/Books/UserCart" >
+                                    <img src="~/Images/shopping-cart.png" id="cart-image"/>
+                                    <span id="number-items">
+                                        @{ 
+                                            Html.RenderAction("NumberOfItemsInCart", "Books");
+                                         }
+                                    </span>
+                                </a>
+                            </li>
+                        }
+                        <li class="nav-item active" style="margin-top: -13px;">
+                            @using (Html.BeginForm("Search", "Books", FormMethod.Get, new { @class = "search" }))
+                            {
+                                <div id="searchopt" class="pl-6 pr-2 py-2 text-sm w-full" accept-charset="UTF-8">
+                                    <input type="search" id="bar" name="query" placeholder="Search books" class="w-10/12 form-control" />
+                                    <button id="search" type="submit" class="submit">
+                                        <img src="~/Images/search.png" alt="Search" id="image-search" />
+                                    </button>
+                                </div>
+                            }
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="container-fluid">
+            <p>
+                <div class="container">
+                    <p></p>
+                    <h2 id="classics">
+                        Classics
+                    </h2>
+                    <br />
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            if (item.GenreId == 28)
+                            {
+                                <div class="col">
+                                    <a href="/Books/Details/@item.BookId" class="book-link">
+                                        <img src="@item.CoverUrl" alt="@item.BookId" class="img-rounded book-image" />
+                                    </a>
+                                </div>
+
+                            }
+
+                        }
+                    </div>
+                    <img src="~/Images/Shelf.png" alt="shelf" class="shelf" />
+                </div>
+                <div class="container">
+                    <h2 id="fiction">
+                        Fiction
+                    </h2>
+                    <br />
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            if (item.GenreId == 1)
+                            {
+                                <div class="col">
+                                    <a href="/Books/Details/@item.BookId" class="book-link">
+                                        <img src="@item.CoverUrl" alt="@item.BookId" class="img-rounded book-image" />
+                                    </a>
+                                </div>
+
+                            }
+
+                        }
+                    </div>
+                    <img src="~/Images/Shelf.png" alt="shelf" class="shelf" />
+                </div>
+                <div class="container">
+                    <h2 id="romance">
+                        Romance
+                    </h2>
+                    <br />
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            if (item.GenreId == 2)
+                            {
+                                <div class="col">
+                                    <a href="/Books/Details/@item.BookId" class="book-link">
+                                        <img src="@item.CoverUrl" alt="@item.BookId" class="img-rounded book-image" />
+                                    </a>
+                                </div>
+
+                            }
+                        }
+                    </div>
+                    <img src="~/Images/Shelf.png" alt="shelf" class="shelf" />
+                </div>
+                <div class="container">
+                    <h2 id="fantasy">
+                        Fantasy
+                    </h2>
+                    <br />
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            if (item.GenreId == 6)
+                            {
+                                <div class="col">
+                                    <a href="/Books/Details/@item.BookId" class="book-link">
+                                        <img src="@item.CoverUrl" alt="@item.BookId" class="img-rounded book-image" />
+                                    </a>
+                                </div>
+
+                            }
+                        }
+                    </div>
+                    <img src="~/Images/Shelf.png" alt="shelf" class="shelf" />
+                </div>
+                <div class="container">
+                    <h2 id="selfhelp">
+                        Self-help
+                    </h2>
+                    <br />
+                    <div class="row">
+                        @foreach (var item in Model)
+                        {
+                            if (item.GenreId == 29)
+                            {
+                                <div class="col">
+                                    <a href="/Books/Details/@item.BookId" class="book-link">
+                                        <img src="@item.CoverUrl" alt="@item.BookId" class="img-rounded book-image" />
+                                    </a>
+                                </div>
+
+                            }
+                        }
+                    </div>
+                    <img src="~/Images/Shelf.png" alt="shelf" class="shelf" />
+                </div>
+            </p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    @*<script src="js/scripts.js"></script>*@
+    <script src="~/Scripts/BookView/scripts.js"></script>
+}

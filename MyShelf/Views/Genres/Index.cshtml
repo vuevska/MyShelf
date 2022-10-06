@@ -1,0 +1,200 @@
+﻿@model IEnumerable<MyShelf.Models.Genre>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<head>
+    <style>
+        .navbar {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+            margin-top: -50px;
+            /* margin-bottom: -5px; */
+        }
+        .special-button {
+            background-color: cadetblue;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .btn-danger:hover {
+            color: black;
+        }
+
+        #content {
+            width: 70%;
+            margin: auto;
+            margin-top: 35px;
+            margin-bottom: 100px;
+            height: 600px;
+        }
+
+        .book-link {
+            margin-left: -110px;
+            border: 3px solid #d1d0d0;
+            border-radius: 20px;
+            display: inline-block;
+            background-color: #d1d0d0;
+            padding-left: 5px;
+            width: 65px;
+            height: 35px;
+        }
+
+        .book-image {
+            width: 50px;
+            height: 50px;
+            margin-top: -14px;
+        }
+
+            .book-image:hover {
+                transform: scale(1.1);
+            }
+
+        .wrap {
+            margin-bottom: 50px;
+        }
+
+        #table, tbody {
+            font-family: monospace;
+            font-size: 15px;
+        }
+
+        header {
+            font-family: monospace;
+            font-size: 20px;
+            color: black;
+        }
+
+        th {
+            font-family: monospace;
+            font-size: 22px;
+        }
+
+        .row {
+            font-size: 18px;
+        }
+
+        .form-inline {
+            display: block;
+        }
+
+        th {
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 22px;
+        }
+
+        #create {
+            font-size: 18px;
+        }
+
+        .btn:not(:disabled):not(.disabled) {
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        div.dataTables_wrapper div.dataTables_filter {
+            text-align: right;
+            margin-left: 185px;
+        }
+        .bootbox-body {
+            font-size: 18px;
+            font-family: monospace;
+        }
+
+        .btn-primary {
+            @*width: 50px;*@
+            background-color: blue;
+            @*height: 35px;*@
+            padding: -5px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+
+<div id="content">
+    <a href="/Books/Index" class="book-link">
+        <img src="~/Images/arrow-left.jpg" class="book-image" />
+    </a>
+    <h2>Genres</h2>
+
+    <p id="create">
+        @if (User.IsInRole("Administrator"))
+        {
+            @*@Html.ActionLink("Create New", "Create")*@
+            <a href="/Genres/Create" class="btn btn-primary">Create New</a>
+        }
+    </p>
+
+    <table id="genres" class="table">
+        <thead>
+            <tr>
+                <th id="genre-id">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+
+                    <td>
+                         @Html.ActionLink("Edit", "Edit", new { id = item.GenreId }, new { @class = "btn special-button" })
+                         @*@Html.ActionLink("Delete", "Delete", new { id = item.GenreId }, new { @class = "btn btn-danger" })*@
+                         <button genre-id="@item.GenreId" class="btn btn-danger js-delete">Delete</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts {
+
+    <script>
+        $(document).ready(function () {
+            var table = $("#genres").DataTable({
+                scrollY: '50vh',
+                scrollCollapse: true,
+                paging: false,
+            });
+
+            $("#genres .js-delete").on("click", function () {
+                var button = $(this);
+
+                bootbox.confirm("Are you sure you want to delete this Genre?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/Genres/Delete/" + button.attr("genre-id"),
+                            method: "GET",
+                            success: function () {
+                                table.row(button.parents("tr")).remove().draw();
+                            },
+                            error: function (err) {
+                                console.log(err);
+                            }
+                        });
+                    }
+                });
+            });
+
+        });
+
+    </script>
+
+}

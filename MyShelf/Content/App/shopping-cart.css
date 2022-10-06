@@ -1,0 +1,140 @@
+﻿@font-face {
+    font-family: 'camptonlight_demo';
+    src: url('/fonts/campton-lightdemo-webfont.woff2') format('woff2'), url('/fonts/campton-lightdemo-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'courgetteregular';
+    src: url('/fonts/courgette-regular-webfont.woff2') format('woff2'), url('/fonts/courgette-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+span {
+    display: inline-block;
+}
+
+#cart, #buy {
+    margin-right: 20px;
+    padding: 20px;
+    font-family: monospace;
+    display: flex;
+    flex-direction: column;
+    /* width: 50%; */
+    border: 2px solid #0d6efd;
+    border-radius: 15px;
+    margin-left: 20px;
+}
+
+    #cart > * {
+        padding: 5px;
+    }
+
+    #cart span, #cart a {
+        display: inline-block;
+    }
+
+
+.jumbotron {
+    align-items: center;
+    color: #212529;
+    text-align: center;
+    background-color: initial;
+    font-size: xx-large;
+    font-family: monospace;
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    font-weight: bold;
+}
+
+    .jumbotron img {
+        padding: 5px;
+        margin-left: 15px;
+    }
+
+#check {
+    display: flex;
+    justify-content: center;
+}
+
+.shop {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+}
+
+    .shop span {
+        font-weight: 700;
+        font-size: x-large;
+        color: #212529;
+    }
+
+    /*.shop img {
+        height: 96px;
+        width: 96px;
+    }*/
+
+.item {
+    display: flex;
+    width: 80%;
+    font-size: larger;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+}
+
+#item img {
+    height: 100%;
+}
+
+.item span {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.item img:first-of-type {
+    height: 100%;
+}
+
+.item img:last-of-type {
+    height: 25px;
+    width: 25px;
+}
+
+#sum {
+    display: flex;
+    justify-content: space-between;
+    color: #333;
+    font-weight: bold;
+    align-items: center;
+    flex-direction: column;
+}
+
+    #sum a, #sum a:hover, #sum a:focus {
+        /*color: #b3404a;*/
+        font-weight: bold;
+        text-decoration: none;
+        /*font-size: initial;*/
+    }
+
+#total {
+    font-size: x-large;
+}
+
+#icons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+}
+
+#cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

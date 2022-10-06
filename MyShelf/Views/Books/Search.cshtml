@@ -1,0 +1,124 @@
+﻿@model IEnumerable<MyShelf.Models.Book>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<head>
+    <link href="@Url.Content("~/Content/App/Search.css")" rel="stylesheet" type="text/css" />
+    <style>
+        .navbar {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 4.5rem;
+            padding-bottom: 1.5rem;
+            margin-top: -99px;
+            /* margin-bottom: -5px;*/
+        }
+        #content {
+            width: 60%;
+            @*height: 640px;*@
+            margin: auto;
+            height: 650px;
+        }
+        .book-link {
+            border: 3px solid #d1d0d0; 
+            border-radius: 20px; 
+            display: inline-block; 
+            width: 65px; 
+            margin-top: 35px; 
+            margin-left: -109px; 
+            padding-left: 5px; 
+            height: 35px; 
+            background-color: #d1d0d0; 
+        }
+        .book-image {
+            width: 45px;
+            height: 45px;
+            margin-left: 2px;
+            margin-top: -13px;
+        }
+            .book-image:hover {
+                transform: scale(1.1);
+            }
+        .wrap {
+            margin-bottom: 50px;
+        }
+        #table, tbody {
+            font-family: monospace;
+            font-size: 15px;
+        }
+        header {
+            font-family: monospace;
+            font-size: 20px;
+            color: black;
+        }
+        th {
+            font-family: monospace;
+            font-size: 22px;
+        }
+        .row {
+            font-size: 18px;
+        }
+        .form-inline {
+            display: block;
+        }
+        th {
+            font-weight: 500;
+        }
+        #query {
+            font-size: 22px;
+            color: #4083b3;
+        }
+        a:hover {
+            color: #4083b3;
+        }
+    </style>
+</head>
+
+<div id="content" >
+    <a href="/Books/Index/" class="book-link" >
+        <img src="~/Images/arrow-left.jpg" alt="Back" class="book-image" />
+    </a>
+
+    <div class="wrap">
+        <header>Search Results for <span id="query">'@ViewBag.Query'</span>:</header>
+
+
+        <table class="table" id="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Title)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.Title, "Details", "Books", routeValues: new { id = item.BookId }, htmlAttributes: null)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+    $(document).ready(function () {
+        $("#table").DataTable({
+            scrollY: '50vh',
+            scrollCollapse: true,
+            paging: false,
+        });
+        });
+    </script>
+}

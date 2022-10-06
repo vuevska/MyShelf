@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyShelf - Your digital bookshelf</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        @*.navbar {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 4.5rem;
+            padding-bottom: 1.5rem;
+            margin-top: -99px;
+            /* margin-bottom: -5px;*/
+        }*@
+        #logo {
+            font-size: 38px;
+            font-family: monospace;
+            font-weight: bold;
+            margin-top: -20px;
+            color: #c4bdbd;
+        }
+        #registerLink, #loginLink {
+            text-decoration: none;
+            color: white;
+            font-size: 17px;
+            margin-right: 20px;
+            font-family: monospace;
+        }
+
+        .container-fluid {
+            margin-top: 15px;
+            margin-left: 5px;
+        }
+        .navbar-right > li {
+            margin-top: -10px;
+            margin-right: 20px;
+        }
+        .navbar-right a {
+            font-size: 20px;
+            text-decoration: none;
+            color: #c4bdbd;
+        }
+            .navbar-right a:hover {
+                color: wheat;
+                font-size: 22px;
+            }
+        #registerLink:hover, #loginLink:hover {
+            color: wheat;
+            font-size: 19px;
+        }
+        @*#registerLink {
+            margin-right: 35px;
+        }*@
+        footer {
+            background-color: #0d3c60;
+            padding-bottom: 10px;
+            margin-bottom: -20px;
+            font-family: monospace;
+        }
+        #media-div {
+            width: 20%; 
+            display: inline-block; 
+            float: right; 
+            margin-top: 10px;
+        }
+        #display-date {
+            color: white; 
+            margin-left: 120px; 
+            margin-top: 15px; 
+            font-size: 17px; 
+            width: 35%; 
+            display: inline-block;
+        }
+        .social-media:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            @*<div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+        </div>*@
+            @*trgnata klasa navbar-collapse collapse od dolniot div*@
+            <div>
+                <ul class="nav navbar-nav" style="height: 40px;">
+                    <li>
+                        @Html.ActionLink("MyShelf", "Index", "Books", new { area = "" }, new { @class = "navbar-brand", @id = "logo" })
+                        <img src="~/Images/shelf2.jpg" alt="MyShelf logo" width="50" style="margin-left: -25px; width: 55px; height: 50px; margin-top: -18px;" />
+                    </li>
+                </ul>
+
+            </div>@Html.Partial("_LoginPartial")
+        </div>
+    </div>
+    <div class="body-content container" style="font-family: monospace; min-height: 100vh; display: contents;">
+        @RenderBody()
+    </div>
+    <footer>
+        <hr />
+        <p id="display-date">&copy; @DateTime.Now.Year - Maja Vuevska, Internet Technologies</p>
+        <div id="media-div">
+            @*<p style="color: white;">Contact us:</p>*@
+            <a href="https://www.facebook.com/login.php" target="_blank"><img src="~/Images/fb.png" style="width: 35px; height: 33px;" class="social-media"></a>
+            <a href="https://www.instagram.com/accounts/login/" target="_blank"><img src="~/Images/ig2.png" style="width: 30px; height: 30px;" class="social-media"/></a>
+            <a href="https://twitter.com/login" target="_blank"><img src="~/Images/twt.png" style="width: 30px; height: 30px;" class="social-media"/></a>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

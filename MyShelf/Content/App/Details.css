@@ -1,0 +1,261 @@
+﻿@font-face {
+    font-family: 'camptonlight_demo';
+    src: url('/fonts/campton-lightdemo-webfont.woff2') format('woff2'), url('/fonts/campton-lightdemo-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'courgetteregular';
+    src: url('/fonts/courgette-regular-webfont.woff2') format('woff2'), url('/fonts/courgette-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.container-fluid {
+    font-family: 'camptonlight_demo';
+    font-size: medium;
+    color: slategrey;
+    line-height: normal;
+    margin-top: 100px;
+    height: 830px;
+}
+
+    .container-fluid .row {
+        width: 99%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 40px;
+    }
+
+    .container-fluid > * {
+        margin: 2px 10px 2px 10px;
+    }
+
+#details {
+    /*width: 50%;*/
+    display: inline-block;
+    width: 40%;
+    padding-left: 5px;
+}
+
+    #details > * {
+        margin: 10px 2px 10px 2px;
+    }
+
+#interact > * {
+    margin: 8px 5px 8px 5px;
+}
+
+#im {
+    /*width: 50%;*/
+    padding: 5px;
+    /*display: flex;*/
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    display: inline-block;
+    width: 33%;
+}
+
+    #im span {
+        font-weight: 700;
+        color: #62080a;
+        font-family: 'camptonlight_demo';
+        text-align: center;
+    }
+
+    #im img {
+       /* width: 80%;*/
+    }
+
+#details {
+    display: flex;
+    flex-direction: column;
+}
+
+#name {
+    /*font-family: 'courgetteregular';*/
+    
+    line-height: normal;
+    /*color: #62080a;*/
+    color: black;
+    /*font-weight: 600;*/
+
+    display: block;
+    font-family: fantasy;
+    font-size: 30px;
+}
+
+#author {
+    font-size: x-large;
+    color: #62080a;
+}
+
+#price {
+    font-size: 40px;
+    font-weight: 600;
+    color: #62080a;
+    display: flex;
+    flex-direction: row;
+}
+
+#interact {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.row:nth-of-type(2) {
+    border-top: 5px dashed #62080a;
+    border-bottom: 5px dashed #62080a;
+    padding: 30px;
+    text-align: justify;
+    color: dimgray;
+    font-size: 17px;
+}
+
+#cart {
+    /*background-color: #62080a;
+    border: 5px solid #62080a;*/
+    font-weight: bold;
+}
+
+#num {
+    text-align: center;
+    border-radius: 8px;
+    max-width: 280px;
+    height: 52%;
+    /*border: 3px solid #62080a;
+    color: #62080a;*/
+    border: 1px solid black;
+    font-weight: bold;
+    align-self: center;
+    margin-right: 10px;
+    display: inline-block;
+    width: 80%;
+    height: 40px;
+    font-size: 18px;
+}
+
+#head {
+    font-family: 'courgetteregular';
+    font-size: x-large;
+    color: #62080a;
+    font-weight: 600;
+}
+
+.ajax_btn_css {
+    font-variant: small-caps;
+    color: #b3404a;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+    .ajax_btn_css:hover {
+        text-decoration: none;
+        color: #b3404a;
+        font-weight: bolder;
+    }
+
+    .ajax_btn_css:focus {
+        text-decoration: none;
+        color: #b3404a;
+        font-weight: bolder;
+    }
+
+.name {
+    color: #62080a;
+    font-weight: bold;
+    font-size: larger;
+    margin-right: 6px;
+}
+
+.date {
+    font-size: small;
+    margin-top: 2px;
+}
+
+.rating {
+    display: flex;
+    margin-top: 3px;
+}
+
+    .rating span {
+        color: #b3404a;
+        font-weight: bold;
+        font-size: medium;
+        margin-top: -1px;
+        margin-left: 2px;
+    }
+
+    .rating img {
+        margin-top: -5px;
+    }
+
+.modal-content {
+    font-family: 'camptonlight_demo';
+    color: #62080a;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.modal-footer button, .modal-footer button:hover, .modal-footer button:focus, .modal-footer button:active, .modal-footer button:active:focus, .modal-footer button:active:hover {
+    border: 3px solid #62080a;
+    background-color: #62080a;
+    font-weight: bold;
+    outline: none;
+    box-shadow: none;
+}
+
+.core_content {
+    /*display: flex;*/
+    margin-top: 45px;
+}
+
+
+    .core_content a {
+        display: inline-block;
+    }
+
+.swal-overlay {
+    background-color: #f4b2b0 !important;
+}
+
+.swal2-icon.swal2-warning {
+    border-color: #62080a !important;
+    color: #62080a !important;
+}
+
+.swal2-title {
+    font-family: 'camptonlight_demo' !important;
+    color: #b3404a !important;
+    font-size: large !important;
+    font-weight: bold !important;
+}
+
+.swal2-content {
+    font-family: 'camptonlight_demo' !important;
+    font-size: 17px !important;
+}
+
+.swal2-actions {
+    font-family: 'camptonlight_demo' !important;
+    font-size: small !important;
+}
+
+.swal2-styled.swal2-confirm {
+    background: #b3404a !important;
+}
+
+.swal2-styled.swal2-cancel {
+    background-color: #62080a !important;
+}
+
+#price_no_discount {
+    margin-right: 35px;
+}
+
+
